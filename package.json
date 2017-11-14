@@ -1,0 +1,24 @@
+{
+  "name": "react-command-palette",
+  "version": "0.0.0",
+  "description": "An inflexible command palette probably for my own use.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davvidbaker/react-command-palette.git"
+  },
+  "keywords": [
+    "react",
+    "command",
+    "palette"
+  ],
+  "author": "David Baker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davvidbaker/react-command-palette/issues"
+  },
+  "homepage": "https://github.com/davvidbaker/react-command-palette#readme"
+}
