@@ -1,6 +1,6 @@
 {
   "name": "react-command-palette",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An inflexible command palette probably for my own use.",
   "main": "index.js",
   "scripts": {
