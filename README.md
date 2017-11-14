@@ -13,3 +13,5 @@ There are two phases, the phase where you enter the command, and the phase where
 ... I probably don't need to be using a generator (which brings the peer dependency of regenerator-runtime, which I usually use in projects due to redux saga...). I need to look over my code and see if it really is making things more readable, or if there is a simple way to do things without the yielding generator stuff. Could I not just use a little counter?
 
 ... could make fuzzaldrin into a BYO filter ...
+
+*logo based on [Samsung astonished emoji](https://emojipedia.org/samsung/galaxy-s7/astonished-face/)*
