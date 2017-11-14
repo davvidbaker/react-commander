@@ -1,5 +1,5 @@
 node_modules
-dist
+lib
 
 # these cause more harm than good
 # when working with contributors
