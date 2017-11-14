@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf lib && mkdir lib",
     "lib": "npm run clean && babel src -d lib",
-    "prepublishOnly": "npm run lib"
+    "prepare": "npm run lib"
   },
   "repository": {
     "type": "git",
