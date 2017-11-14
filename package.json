@@ -5,18 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib && mkdir lib",
     "lib": "npm run clean && babel src -d lib",
-    "clean": "rm -rf lib && mkdir lib"
+    "prepublish": "npm run lib"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/davvidbaker/react-command-palette.git"
   },
-  "keywords": [
-    "react",
-    "command",
-    "palette"
-  ],
+  "keywords": ["react", "command", "palette"],
   "author": "David Baker",
   "license": "MIT",
   "bugs": {
