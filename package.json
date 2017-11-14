@@ -1,6 +1,6 @@
 {
-  "name": "react-command-palette",
-  "version": "1.0.0",
+  "name": "react-commander",
+  "version": "0.0.0",
   "description": "An inflexible command palette probably for my own use.",
   "main": "lib/index.js",
   "scripts": {
@@ -11,19 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davvidbaker/react-command-palette.git"
+    "url": "git+https://github.com/davvidbaker/react-commander.git"
   },
-  "keywords": [
-    "react",
-    "command",
-    "palette"
-  ],
+  "keywords": ["react", "command", "palette"],
   "author": "David Baker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/davvidbaker/react-command-palette/issues"
+    "url": "https://github.com/davvidbaker/react-commander/issues"
   },
-  "homepage": "https://github.com/davvidbaker/react-command-palette#readme",
+  "homepage": "https://github.com/davvidbaker/react-commander#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
@@ -43,6 +39,7 @@
     "react-modal": "^3",
     "fuzzaldrin-plus": ">=0.5",
     "downshift": "^1",
-    "styled-components": "^2"
+    "styled-components": "^2",
+    "regenerator-runtime": "^0.11.0"
   }
 }

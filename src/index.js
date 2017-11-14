@@ -1,3 +1,3 @@
-import CommandPalette from './components/CommandPalette'
+import Commander from './components/Commander';
 
-export default CommandPalette
+export default Commander;
