@@ -65,7 +65,7 @@ class CommandPalette extends Component {
   };
 
   reset = () => {
-    this.props.hideCommandPalette();
+    this.props.hideCommander();
     this.setState({ phase: 'command', parameter: {} });
   };
 
