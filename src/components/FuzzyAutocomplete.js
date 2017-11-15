@@ -5,14 +5,14 @@ import Downshift from 'downshift';
 
 const FuzzyAutocomplete = ({
   onChange,
-  // isOpen,
   placeholder,
   items,
   itemStringKey,
+  itemReturnKey = null,
 }) => {
   return (
     <Downshift
-      isOpen={true}
+      defaultIsOpen={true}
       onChange={onChange}
       defaultInputValue=""
       defaultHighlightedIndex={0}
@@ -27,6 +27,14 @@ const FuzzyAutocomplete = ({
         isOpen,
         selectedItem,
       }) => {
+        console.log(
+          'these are the items',
+          inputValue.length === 0
+            ? items
+            : fuzzaldrin.filter(items, inputValue, {
+                key: itemStringKey,
+              })
+        );
         return (
           <div>
             <label {...getLabelProps()} />
@@ -36,35 +44,47 @@ const FuzzyAutocomplete = ({
                 placeholder,
               })}
             />
-            {isOpen ? (
-              <div>
-                {fuzzaldrin
-                  .filter(items, inputValue, {
+            <div>
+              {/* 💁 fuzzaldrin returns an empty array if the input is an empty string, but I want to show all the options instead */}
+              {(inputValue.length === 0
+                ? items
+                : fuzzaldrin.filter(items, inputValue, {
                     key: itemStringKey,
                   })
-                  .map((item, index) => (
-                    <div
-                      {...getItemProps({
-                        key: item.action,
-                        index,
-                        item: item,
-                        style: {
-                          backgroundColor:
-                            highlightedIndex === index ? 'lightgray' : 'white',
-                          fontWeight:
-                            selectedItem === item.copy ? 'bold' : 'normal',
-                        },
-                      })}
-                    >
+              ).map((item, index) => {
+                console.log('item, index', item, index);
+                return (
+                  <div
+                    {...getItemProps({
+                      key: itemStringKey ? item[itemStringKey] : item,
+                      index,
+                      item: item,
+                      style: {
+                        backgroundColor:
+                          highlightedIndex === index ? 'lightgray' : 'white',
+                        fontWeight:
+                          selectedItem === item[itemStringKey]
+                            ? 'bold'
+                            : 'normal',
+                      },
+                    })}
+                  >
+                    {inputValue.length === 0 ? (
+                      <span>{item[itemStringKey]}</span>
+                    ) : (
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: fuzzaldrin.wrap(item.copy, inputValue),
+                          __html: fuzzaldrin.wrap(
+                            item[itemStringKey],
+                            inputValue
+                          ),
                         }}
                       />
-                    </div>
-                  ))}
-              </div>
-            ) : null}
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         );
       }}

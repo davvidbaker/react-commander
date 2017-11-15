@@ -12,6 +12,7 @@ class CommandPalette extends Component {
   state = {
     phase: 'command',
     parameter: {},
+    parameterItems: {},
   };
 
   constructor(props) {
@@ -20,8 +21,16 @@ class CommandPalette extends Component {
     this.enterCommand = this.enterCommand.bind(this);
   }
 
-  enterParameter = item => {
-    this.runner.next(item);
+  selectParameterItem = item => {
+    this.enterParameter(
+      this.state.parameter.itemReturnKey
+        ? item[this.state.parameter.itemReturnKey]
+        : item
+    );
+  };
+
+  enterParameter = val => {
+    this.runner.next(val);
   };
 
   *parameterRunner(commandItem) {
@@ -30,10 +39,12 @@ class CommandPalette extends Component {
     let loadedItem = { ...commandItem };
     for (let i = 0; i < commandItem.parameters.length; i++) {
       console.log('loadedItem top of loop', loadedItem);
+
       // mehhhhh
-      this.setState({ parameter: commandItem.parameters[i] }, () => {
-        console.log('this.state', this.state);
-      });
+      const parameterItems = commandItem.parameters[i].selector
+        ? this.props.getItems(commandItem.parameters[i].selector)
+        : null;
+      this.setState({ parameter: commandItem.parameters[i], parameterItems });
 
       loadedItem = {
         ...loadedItem,
@@ -95,7 +106,16 @@ class CommandPalette extends Component {
             onSubmit={this.enterParameter}
           />
         ) : (
-          <FuzzyAutocomplete />
+          <FuzzyAutocomplete
+            itemStringKey={this.state.parameter.itemStringKey}
+            items={this.state.parameterItems}
+            onChange={this.selectParameterItem}
+            placeholder={
+              this.state.parameter.placeholder
+                ? this.state.parameter.placeholder
+                : this.state.parameter.key
+            }
+          />
         )}
       </Modal>
     );

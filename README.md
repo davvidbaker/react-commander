@@ -14,4 +14,4 @@ There are two phases, the phase where you enter the command, and the phase where
 
 ... could make fuzzaldrin into a BYO filter ...
 
-*logo based on [Samsung astonished emoji](https://emojipedia.org/samsung/galaxy-s7/astonished-face/)*
+*logo based on [Samsung astonished emoji](https://emojipedia.org/samsung/galaxy-s7/astonished-face/)*]
