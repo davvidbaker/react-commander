@@ -68,13 +68,6 @@ class CommandPalette extends Component {
     }
   }
 
-  onAfterOpen = () => {
-    // if (this.props.isOnlyPrompt) {
-    // } else {
-    //   this.downshiftInput.focus();
-    // }
-  };
-
   reset = () => {
     this.props.hideCommander();
     this.setState({ phase: 'command', parameter: {} });
@@ -95,17 +88,7 @@ class CommandPalette extends Component {
             placeholder={this.props.placeholder}
             items={this.props.commands}
           />
-        ) : this.state.parameter.isOnlyPrompt ? (
-          <SimplePrompt
-            placeholder={
-              this.state.parameter.placeholder
-                ? this.state.parameter.placeholder
-                : this.state.parameter.key
-            }
-            initialValue={''}
-            onSubmit={this.enterParameter}
-          />
-        ) : (
+        ) : this.state.parameter.selector ? (
           <FuzzyAutocomplete
             itemStringKey={this.state.parameter.itemStringKey}
             items={this.state.parameterItems}
@@ -115,6 +98,16 @@ class CommandPalette extends Component {
                 ? this.state.parameter.placeholder
                 : this.state.parameter.key
             }
+          />
+        ) : (
+          <SimplePrompt
+            placeholder={
+              this.state.parameter.placeholder
+                ? this.state.parameter.placeholder
+                : this.state.parameter.key
+            }
+            initialValue={''}
+            onSubmit={this.enterParameter}
           />
         )}
       </Modal>
@@ -129,14 +122,12 @@ CommandPalette.propTypes = {
       copy: PropTypes.string,
     })
   ),
-  isOnlyPrompt: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
 };
 
 CommandPalette.defaultProps = {
   commands: null,
-  isOnlyPrompt: false,
   placeholder: 'Type ? to see available commands',
 };
 
