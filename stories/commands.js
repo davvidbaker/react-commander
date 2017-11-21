@@ -16,6 +16,7 @@ const COMMANDS = [
   {
     action: 'ACTIVITY_CREATE',
     copy: 'start a new task/activity',
+    shortcut: '⌘ ⇧ M',
     parameters: [
       {
         key: 'name',
@@ -60,6 +61,7 @@ const COMMANDS = [
     copy: 'End by Rejection',
     parameters: [messageParam],
     status: ['active'],
+    label: activityLabel,
   },
   {
     action: 'ACTIVITY_RESOLVE',
