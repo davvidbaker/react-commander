@@ -54,6 +54,7 @@ const FuzzyAutocomplete = ({
                     key: itemStringKey,
                   })
               ).map((item, index) => {
+                console.log(item, item.label);
                 return (
                   <div
                     className="commander-result"
@@ -67,6 +68,20 @@ const FuzzyAutocomplete = ({
                       },
                     })}
                   >
+                    {item.label && (
+                      <span
+                        className="item-label"
+                        style={{
+                          background: item.label.background,
+                          color: 'white',
+                          padding: '3px',
+                          borderRadius: '2px',
+                          marginRight: '5px',
+                        }}
+                      >
+                        {item.label.copy}
+                      </span>
+                    )}
                     {inputValue.length === 0 ? (
                       <span>{item[itemStringKey]}</span>
                     ) : (

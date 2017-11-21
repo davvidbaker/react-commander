@@ -5,6 +5,12 @@ const threadParam = {
   itemStringKey: 'name',
   itemReturnKey: 'id',
 };
+const messageParam = { key: 'message', placeholder: 'why?' };
+
+const activityLabel = {
+  copy: 'Activity',
+  background: 'rebeccapurple',
+};
 
 const COMMANDS = [
   {
@@ -44,43 +50,39 @@ const COMMANDS = [
     action: 'TODOS_TOGGLE',
     copy: 'toggle todo list',
   },
-];
-
-const messageParam = { key: 'message', placeholder: 'why?' };
-/** 💁 For when the operand is an activity. */
-export const ACTIVITY_COMMANDS = [
   {
     action: 'ACTIVITY_END',
-    copy: 'Activity: Just fucking end it.',
+    copy: 'Just fucking end it.',
     status: ['active'],
   },
   {
     action: 'ACTIVITY_REJECT',
-    copy: 'Activity: End by Rejection',
+    copy: 'End by Rejection',
     parameters: [messageParam],
     status: ['active'],
   },
   {
     action: 'ACTIVITY_RESOLVE',
-    copy: 'Activity: End by Resolution',
+    copy: 'End by Resolution',
     parameters: [messageParam],
     status: ['active'],
+    label: activityLabel,
   },
   {
     action: 'ACTIVITY_RESUME',
-    copy: 'Activity: Resume',
+    copy: 'Resume',
     parameters: [messageParam],
     status: ['suspended'],
   },
   {
     action: 'ACTIVITY_SUSPEND',
-    copy: 'Activity: Suspend',
+    copy: 'Suspend',
     parameters: [messageParam],
     status: ['active'],
   },
   {
     action: 'ACTIVITY_DELETE',
-    copy: 'Activity: Delete',
+    copy: 'Delete',
     status: ['active', 'suspended', 'complete'],
   },
 ];

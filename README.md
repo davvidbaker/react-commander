@@ -14,6 +14,10 @@ There are two phases, the phase where you enter the command, and the phase where
 
 ... could make fuzzaldrin into a BYO filter ...
 
+# TODO
+- find a list of commands to use
+- more stories instead of just the one
+
 # Similar Work
 - [react-fuzzy](https://github.com/ritz078/react-fuzzy-search)
 - [fuzzy-picker](https://github.com/1egoman/fuzzy-picker)
