@@ -2,7 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import fuzzaldrin from 'fuzzaldrin-plus';
 import Downshift from 'downshift';
+import styled from 'styled-components';
 
+const StyledResults = styled.div`
+  .commander-result {
+    padding: 5px;
+
+    &:first-child {
+      border-top: 1px solid #ccc;
+    }
+  }
+`;
 const FuzzyAutocomplete = ({
   onChange,
   placeholder,
@@ -27,14 +37,6 @@ const FuzzyAutocomplete = ({
         isOpen,
         selectedItem,
       }) => {
-        console.log(
-          'these are the items',
-          inputValue.length === 0
-            ? items
-            : fuzzaldrin.filter(items, inputValue, {
-                key: itemStringKey,
-              })
-        );
         return (
           <div>
             <label {...getLabelProps()} />
@@ -44,7 +46,7 @@ const FuzzyAutocomplete = ({
                 placeholder,
               })}
             />
-            <div>
+            <StyledResults>
               {/* 💁 fuzzaldrin returns an empty array if the input is an empty string, but I want to show all the options instead */}
               {(inputValue.length === 0
                 ? items
@@ -52,20 +54,16 @@ const FuzzyAutocomplete = ({
                     key: itemStringKey,
                   })
               ).map((item, index) => {
-                console.log('item, index', item, index);
                 return (
                   <div
+                    className="commander-result"
                     {...getItemProps({
                       key: itemStringKey ? item[itemStringKey] : item,
                       index,
                       item: item,
                       style: {
                         backgroundColor:
-                          highlightedIndex === index ? 'lightgray' : 'white',
-                        fontWeight:
-                          selectedItem === item[itemStringKey]
-                            ? 'bold'
-                            : 'normal',
+                          highlightedIndex === index ? '#f5f5f5' : 'white',
                       },
                     })}
                   >
@@ -84,7 +82,7 @@ const FuzzyAutocomplete = ({
                   </div>
                 );
               })}
-            </div>
+            </StyledResults>
           </div>
         );
       }}

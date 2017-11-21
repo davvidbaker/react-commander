@@ -7,8 +7,9 @@ import regeneratorRuntime from 'regenerator-runtime';
 
 import SimplePrompt from './SimplePrompt';
 import FuzzyAutocomplete from './FuzzyAutocomplete';
+import Div from './StyledDiv';
 
-class CommandPalette extends Component {
+class Commander extends Component {
   state = {
     phase: 'command',
     parameter: {},
@@ -53,6 +54,7 @@ class CommandPalette extends Component {
       console.log('loadedItem', loadedItem);
     }
 
+    this.reset();
     this.props.onSubmit(loadedItem);
   }
 
@@ -64,6 +66,7 @@ class CommandPalette extends Component {
       this.runner = this.parameterRunner(commandItem);
       this.runner.next();
     } else {
+      this.reset();
       this.props.onSubmit(commandItem);
     }
   }
@@ -76,46 +79,59 @@ class CommandPalette extends Component {
   render() {
     return (
       <Modal
-        style={{ overlay: { zIndex: 20 } }}
+        style={{
+          overlay: { zIndex: 20 },
+          content: {
+            padding: 0,
+            border: 'none',
+            borderRadius: 0,
+            overflow: 'unset',
+            right: 'unset',
+            bottom: 'unset',
+            position: 'unset',
+          },
+        }}
         isOpen={this.props.isOpen}
         onRequestClose={this.reset}
         onAfterOpen={this.onAfterOpen}
       >
-        {this.state.phase === 'command' ? (
-          <FuzzyAutocomplete
-            itemStringKey="copy"
-            onChange={this.enterCommand}
-            placeholder={this.props.placeholder}
-            items={this.props.commands}
-          />
-        ) : this.state.parameter.selector ? (
-          <FuzzyAutocomplete
-            itemStringKey={this.state.parameter.itemStringKey}
-            items={this.state.parameterItems}
-            onChange={this.selectParameterItem}
-            placeholder={
-              this.state.parameter.placeholder
-                ? this.state.parameter.placeholder
-                : this.state.parameter.key
-            }
-          />
-        ) : (
-          <SimplePrompt
-            placeholder={
-              this.state.parameter.placeholder
-                ? this.state.parameter.placeholder
-                : this.state.parameter.key
-            }
-            initialValue={''}
-            onSubmit={this.enterParameter}
-          />
-        )}
+        <Div>
+          {this.state.phase === 'command' ? (
+            <FuzzyAutocomplete
+              itemStringKey="copy"
+              onChange={this.enterCommand}
+              placeholder={this.props.placeholder}
+              items={this.props.commands}
+            />
+          ) : this.state.parameter.selector ? (
+            <FuzzyAutocomplete
+              itemStringKey={this.state.parameter.itemStringKey}
+              items={this.state.parameterItems}
+              onChange={this.selectParameterItem}
+              placeholder={
+                this.state.parameter.placeholder
+                  ? this.state.parameter.placeholder
+                  : this.state.parameter.key
+              }
+            />
+          ) : (
+            <SimplePrompt
+              placeholder={
+                this.state.parameter.placeholder
+                  ? this.state.parameter.placeholder
+                  : this.state.parameter.key
+              }
+              initialValue={''}
+              onSubmit={this.enterParameter}
+            />
+          )}
+        </Div>
       </Modal>
     );
   }
 }
 
-CommandPalette.propTypes = {
+Commander.propTypes = {
   commands: PropTypes.arrayOf(
     PropTypes.shape({
       action: PropTypes.string,
@@ -126,13 +142,13 @@ CommandPalette.propTypes = {
   placeholder: PropTypes.string,
 };
 
-CommandPalette.defaultProps = {
+Commander.defaultProps = {
   commands: null,
   placeholder: 'Type ? to see available commands',
 };
 
-export default CommandPalette;
+export default Commander;
 
 // export default connect(null, dispatch => ({
 //   dispatchAction: type => dispatch({ type }),
-// }))(CommandPalette);
+// }))(Commander);

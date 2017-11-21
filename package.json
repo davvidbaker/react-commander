@@ -7,17 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf lib && mkdir lib",
     "lib": "npm run clean && babel src -d lib",
-    "prepare": "npm run lib"
+    "prepare": "npm run lib",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/davvidbaker/react-commander.git"
   },
-  "keywords": [
-    "react",
-    "command",
-    "palette"
-  ],
+  "keywords": ["react", "command", "palette"],
   "author": "David Baker",
   "license": "MIT",
   "bugs": {
@@ -25,6 +22,7 @@
   },
   "homepage": "https://github.com/davvidbaker/react-commander#readme",
   "devDependencies": {
+    "@storybook/react": "^3.2.16",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
