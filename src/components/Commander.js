@@ -85,6 +85,7 @@ class Commander extends Component {
             padding: 0,
             border: 'none',
             borderRadius: 0,
+            background: 'none',
             overflow: 'unset',
             right: 'unset',
             bottom: 'unset',

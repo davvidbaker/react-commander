@@ -14,7 +14,11 @@
     "type": "git",
     "url": "git+https://github.com/davvidbaker/react-commander.git"
   },
-  "keywords": ["react", "command", "palette"],
+  "keywords": [
+    "react",
+    "command",
+    "palette"
+  ],
   "author": "David Baker",
   "license": "MIT",
   "bugs": {
