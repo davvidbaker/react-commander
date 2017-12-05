@@ -17,6 +17,7 @@ There are two phases, the phase where you enter the command, and the phase where
 # TODO
 - find a list of commands to use
 - more stories instead of just the one
+- eslint, testing, prettier, before commit
 
 # Similar Work
 - [react-fuzzy](https://github.com/ritz078/react-fuzzy-search)

@@ -24,14 +24,20 @@ const FuzzyAutocomplete = ({
   items,
   itemStringKey,
   itemReturnKey = null,
+  onInputChange,
 }) => {
   return (
     <Downshift
-      defaultIsOpen={true}
-      onChange={onChange}
+      // defaultIsOpen={true}
+      isOpen={true}
+      onChange={item => {
+        onChange(item);
+      }}
       defaultInputValue=""
+      selectedItem=""
       defaultHighlightedIndex={0}
       itemToString={i => (i ? i[itemStringKey] : '')}
+      breakingChanges={{ resetInputOnSelection: true }}
     >
       {({
         getInputProps,
@@ -53,20 +59,19 @@ const FuzzyAutocomplete = ({
             />
             <StyledResults>
               {/* 💁 fuzzaldrin returns an empty array if the input is an empty string, but I want to show all the options instead */}
-              {(inputValue.length === 0
+              {(!inputValue || inputValue.length === 0
                 ? items
                 : fuzzaldrin.filter(items, inputValue, {
                     key: itemStringKey,
                   })
               ).map((item, index) => {
-                console.log(item, item.label);
                 return (
                   <div
                     className="commander-result"
                     {...getItemProps({
                       key: itemStringKey ? item[itemStringKey] : item,
                       index,
-                      item: item,
+                      item,
                       style: {
                         backgroundColor:
                           highlightedIndex === index ? '#f5f5f5' : 'white',

@@ -35,12 +35,9 @@ class Commander extends Component {
   };
 
   *parameterRunner(commandItem) {
-    console.log('i am in the runner', commandItem);
     /** 💁 loaded as in loaded up, bogged down, made heavy */
     let loadedItem = { ...commandItem };
     for (let i = 0; i < commandItem.parameters.length; i++) {
-      console.log('loadedItem top of loop', loadedItem);
-
       // mehhhhh
       const parameterItems = commandItem.parameters[i].selector
         ? this.props.getItems(commandItem.parameters[i].selector)
@@ -51,7 +48,6 @@ class Commander extends Component {
         ...loadedItem,
         [commandItem.parameters[i].key]: yield commandItem.parameters[i],
       };
-      console.log('loadedItem', loadedItem);
     }
 
     this.reset();
@@ -62,7 +58,6 @@ class Commander extends Component {
     if (commandItem.parameters) {
       this.setState({ phase: 'parameters' });
 
-      console.log('here I am before the stuff');
       this.runner = this.parameterRunner(commandItem);
       this.runner.next();
     } else {

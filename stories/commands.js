@@ -5,6 +5,14 @@ const threadParam = {
   itemStringKey: 'name',
   itemReturnKey: 'id',
 };
+const categoryParam = {
+  key: 'category_id',
+  placeholder: 'category',
+  selector: props => props.user.categories,
+  itemStringKey: 'name',
+  itemReturnKey: 'id',
+};
+
 const messageParam = { key: 'message', placeholder: 'why?' };
 
 const activityLabel = {
@@ -23,6 +31,7 @@ const COMMANDS = [
         placeholder: 'gist description of the activity',
       },
       threadParam,
+      categoryParam,
     ],
   },
   {
