@@ -4,6 +4,7 @@
   "description": "An inflexible command palette probably for my own use.",
   "main": "lib/index.js",
   "scripts": {
+    "start": "npm run storybook",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf lib && mkdir lib",
     "lib": "npm run clean && babel src -d lib",

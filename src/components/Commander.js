@@ -8,12 +8,14 @@ import regeneratorRuntime from 'regenerator-runtime';
 import SimplePrompt from './SimplePrompt';
 import FuzzyAutocomplete from './FuzzyAutocomplete';
 import Div from './StyledDiv';
+import Buildup from './Buildup';
 
 class Commander extends Component {
   state = {
     phase: 'command',
     parameter: {},
     parameterItems: {},
+    enteredCommands: [],
   };
 
   constructor(props) {
@@ -31,6 +33,19 @@ class Commander extends Component {
   };
 
   enterParameter = val => {
+    this.setState({
+      enteredCommands: [
+        ...this.state.enteredCommands,
+        {
+          phase: this.state.phase,
+          copy: `${
+            this.state.parameter.placeholder
+              ? this.state.parameter.placeholder
+              : this.state.parameter.key
+          }: ${val}`,
+        },
+      ],
+    });
     this.runner.next(val);
   };
 
@@ -58,6 +73,13 @@ class Commander extends Component {
     if (commandItem.parameters) {
       this.setState({ phase: 'parameters' });
 
+      this.setState({
+        enteredCommands: [
+          ...this.state.enteredCommands,
+          { phase: this.state.phase, copy: commandItem.copy },
+        ],
+      });
+
       this.runner = this.parameterRunner(commandItem);
       this.runner.next();
     } else {
@@ -68,7 +90,7 @@ class Commander extends Component {
 
   reset = () => {
     this.props.hideCommander();
-    this.setState({ phase: 'command', parameter: {} });
+    this.setState({ phase: 'command', parameter: {}, enteredCommands: [] });
   };
 
   render() {
@@ -92,6 +114,10 @@ class Commander extends Component {
         onAfterOpen={this.onAfterOpen}
       >
         <Div>
+          {this.props.withBuildup &&
+            this.state.enteredCommands.length > 0 && (
+              <Buildup enteredCommands={this.state.enteredCommands} />
+            )}
           {this.state.phase === 'command' ? (
             <FuzzyAutocomplete
               itemStringKey="copy"

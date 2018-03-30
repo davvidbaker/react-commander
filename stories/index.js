@@ -24,16 +24,31 @@ function getItems(selector) {
   return selector(PROPS);
 }
 
-storiesOf('Commander', module).add('default', () => (
-  <Commander
-    isOpen={true}
-    commands={COMMANDS}
-    onSubmit={command => {
-      console.log('submitted', command);
-    }}
-    hideCommander={() => {
-      console.log('hiding');
-    }}
-    getItems={getItems}
-  />
-));
+storiesOf('Commander', module)
+  .add('default', () => (
+    <Commander
+      isOpen={true}
+      commands={COMMANDS}
+      onSubmit={command => {
+        console.log('submitted', command);
+      }}
+      hideCommander={() => {
+        console.log('hiding');
+      }}
+      getItems={getItems}
+    />
+  ))
+  .add('with buildup', () => (
+    <Commander
+      isOpen={true}
+      withBuildup={true}
+      commands={COMMANDS}
+      onSubmit={command => {
+        console.log('submitted', command);
+      }}
+      hideCommander={() => {
+        console.log('hiding');
+      }}
+      getItems={getItems}
+    />
+  ));
