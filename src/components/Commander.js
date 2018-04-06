@@ -96,6 +96,7 @@ class Commander extends Component {
   render() {
     return (
       <Modal
+        appElement={this.props.appElement}
         style={{
           overlay: { zIndex: 20 },
           content: {
