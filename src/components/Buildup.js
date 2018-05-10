@@ -21,9 +21,9 @@ class Buildup extends Component {
         {this.props.enteredCommands.map(
           ({ phase, copy }) =>
             phase === 'command' ? (
-              <COMMAND>{copy}</COMMAND>
+              <COMMAND key={copy}>{copy}</COMMAND>
             ) : (
-              <PARAMETER>{copy}</PARAMETER>
+              <PARAMETER key={copy}>{copy}</PARAMETER>
             )
         )}
       </UL>
