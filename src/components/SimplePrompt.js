@@ -34,7 +34,7 @@ class SimplePrompt extends React.Component {
 
 SimplePrompt.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   initialValue: PropTypes.string,
 };
 

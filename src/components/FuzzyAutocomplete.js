@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import fuzzaldrin from 'fuzzaldrin-plus';
 import Downshift from 'downshift';
 import styled from 'styled-components';

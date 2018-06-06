@@ -24,6 +24,18 @@ class Commander extends Component {
     this.enterCommand = this.enterCommand.bind(this);
   }
 
+  componentDidCatch(e, info) {
+    if (this.props.onCatch) {
+      this.props.onCatch(e, info);
+    } else {
+      console.error(
+        'Error in Commander. You can pass an `onCatch` function as a prop to <Commander /> to handle the catch in your own app.',
+        e,
+        info
+      );
+    }
+  }
+
   selectParameterItem = item => {
     this.enterParameter(
       this.state.parameter.itemReturnKey
@@ -157,11 +169,12 @@ class Commander extends Component {
 Commander.propTypes = {
   commands: PropTypes.arrayOf(
     PropTypes.shape({
-      action: PropTypes.string,
+      action: PropTypes.oneOfType(PropTypes.func, PropTypes.string).isRequired,
       copy: PropTypes.string,
     })
   ),
   onSubmit: PropTypes.func.isRequired,
+  onCatch: PropTypes.func,
   placeholder: PropTypes.string,
 };
 
@@ -171,7 +184,3 @@ Commander.defaultProps = {
 };
 
 export default Commander;
-
-// export default connect(null, dispatch => ({
-//   dispatchAction: type => dispatch({ type }),
-// }))(Commander);
