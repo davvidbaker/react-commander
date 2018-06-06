@@ -23,4 +23,4 @@ There are two phases, the phase where you enter the command, and the phase where
 - [react-fuzzy](https://github.com/ritz078/react-fuzzy-search)
 - [fuzzy-picker](https://github.com/1egoman/fuzzy-picker)
 
-*logo based on [Samsung astonished emoji](https://emojipedia.org/samsung/galaxy-s7/astonished-face/)*]
+*logo based on [Samsung astonished emoji](https://emojipedia.org/samsung/galaxy-s7/astonished-face/)*
