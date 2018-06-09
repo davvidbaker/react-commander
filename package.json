@@ -1,6 +1,6 @@
 {
   "name": "react-commander",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An inflexible command palette probably for my own use.",
   "main": "lib/index.js",
   "scripts": {
