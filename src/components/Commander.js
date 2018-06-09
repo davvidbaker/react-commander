@@ -169,7 +169,7 @@ class Commander extends Component {
 Commander.propTypes = {
   commands: PropTypes.arrayOf(
     PropTypes.shape({
-      action: PropTypes.oneOfType(PropTypes.func, PropTypes.string).isRequired,
+      action: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
       copy: PropTypes.string,
     })
   ),
