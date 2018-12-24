@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "description": "An inflexible command palette probably for my own use.",
   "main": "lib/index.js",
+  "module": "src/index.js",
   "scripts": {
     "start": "npm run storybook",
     "clean": "rm -rf lib && mkdir lib",
