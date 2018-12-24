@@ -1,9 +1,9 @@
-import { useState, useMemo, useEffect } from 'react';
+import * as React from 'react';
 import { interpret } from 'xstate/lib/interpreter';
 
 function useMachine(machine, options = {}) {
-  const [current, setCurrent] = useState(machine.initialState);
-  const service = useMemo(
+  const [current, setCurrent] = React.useState(machine.initialState);
+  const service = React.useMemo(
     () =>
       interpret(machine)
         .onTransition(state => {
@@ -16,7 +16,7 @@ function useMachine(machine, options = {}) {
     [],
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     return () => service.stop();
   }, []);
 
