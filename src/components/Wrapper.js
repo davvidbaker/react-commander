@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledDiv = styled.div`
+const Wrapper = styled.div`
   width: 400px;
   margin: 0 auto;
   background: white;
@@ -25,4 +25,4 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default StyledDiv;
+export default Wrapper;

@@ -24,19 +24,20 @@ const FuzzyAutocomplete = ({
   itemStringKey,
   itemReturnKey = null,
   onInputChange,
+  initialInputValue = '',
+  onBlur,
 }) => {
   return (
     <Downshift
-      // defaultIsOpen={true}
       isOpen={true}
-      onChange={item => {
-        onChange(item);
+      onChange={(selection, { reset }) => {
+        onChange(selection);
+        reset();
       }}
-      defaultInputValue=""
+      initialInputValue={initialInputValue}
       selectedItem=""
       defaultHighlightedIndex={0}
-      itemToString={i => (i ? i[itemStringKey] : '')}
-      breakingChanges={{ resetInputOnSelection: true }}
+      itemToString={item => (item ? item[itemStringKey] : '')}
     >
       {({
         getInputProps,
@@ -99,7 +100,7 @@ const FuzzyAutocomplete = ({
                           dangerouslySetInnerHTML={{
                             __html: fuzzaldrin.wrap(
                               item[itemStringKey],
-                              inputValue
+                              inputValue,
                             ),
                           }}
                         />

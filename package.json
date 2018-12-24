@@ -5,7 +5,6 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run storybook",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf lib && mkdir lib",
     "lib": "npm run clean && babel src -d lib",
     "prepare": "npm run lib",
@@ -18,7 +17,9 @@
   "keywords": [
     "react",
     "command",
-    "palette"
+    "palette",
+    "wizard",
+    "commander"
   ],
   "author": "David Baker",
   "license": "MIT",
@@ -27,27 +28,28 @@
   },
   "homepage": "https://github.com/davvidbaker/react-commander#readme",
   "devDependencies": {
-    "@storybook/react": "^3.2.16",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.10",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "downshift": "^1.22.1",
-    "fuzzaldrin-plus": "^0.5.0",
-    "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-modal": "^3.1.2",
-    "styled-components": "^2.2.3"
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^4.1.3",
+    "babel-plugin-styled-components": "^1.10.0",
+    "downshift": "^3.1.8",
+    "fuzzaldrin-plus": "^0.6.0",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
+    "react-modal": "^3.8.1",
+    "styled-components": "^4.1.3"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "react-dom": ">=16",
-    "react-modal": "^3",
-    "fuzzaldrin-plus": ">=0.5",
-    "downshift": "^1",
-    "styled-components": "^2",
-    "regenerator-runtime": "^0.11.0"
+    "react": ">=16.7.0",
+    "react-dom": ">=16.7.0",
+    "react-modal": "^3.8.1",
+    "fuzzaldrin-plus": ">=0.6.0",
+    "downshift": "^3.1.8",
+    "styled-components": "^4.1.3"
+  },
+  "dependencies": {
+    "xstate": "^4.2.2"
   }
 }
