@@ -184,7 +184,8 @@ function Field({
       { ...field },
     ),
     {
-      log: false,
+      /* 💁  set to true to help debugging */
+      log: true,
     },
   );
 

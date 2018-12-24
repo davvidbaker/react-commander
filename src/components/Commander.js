@@ -15,6 +15,7 @@ function Commander({
   appElement,
   isOpen,
   getItems,
+  field = undefined,
 }) {
   return (
     <Modal
@@ -38,7 +39,7 @@ function Commander({
       <Wrapper>
         <Field
           availableCommands={commands}
-          field={undefined}
+          field={field}
           getItems={getItems}
           onFullyLoaded={onSubmit}
         />

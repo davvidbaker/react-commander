@@ -1,5 +1,5 @@
 import { Machine, actions } from 'xstate';
-import { commandHasParameters, commandFullyLoaded } from '../utilities';
+import * as Utilities from '../utilities';
 
 const { assign } = actions;
 
@@ -10,6 +10,14 @@ const commitParameter = assign((ctx, event) => ({
   },
 }));
 
+const commandFullyLoaded = (ctx, event) =>
+  ctx.command && Utilities.commandFullyLoaded(ctx.command, ctx.parameters);
+
+const commandHasParameters = (ctx, event) =>
+  Utilities.commandHasParameters(event.command);
+
+const commandNotNull = ctx => ctx.command !== null;
+
 const setCommand = assign((ctx, event) => ({ command: event.command }));
 
 const submitCommand = () => {};
@@ -17,22 +25,40 @@ const submitCommand = () => {};
 const fieldMachine = Machine(
   {
     id: 'field',
-    initial: 'command',
+    initial: 'initial',
     context: {
       command: null,
       parameters: {},
     },
     states: {
+      initial: {
+        on: {
+          '': [
+            {
+              target: 'fully_loaded',
+              cond: 'commandFullyLoaded',
+            },
+            {
+              target: 'parameters',
+              cond: 'commandNotNull',
+            },
+            {
+              target: 'command',
+            },
+          ],
+        },
+      },
       command: {
         on: {
           COMMAND_SELECT: [
             {
               target: 'parameters',
-              cond: (ctx, event) => commandHasParameters(event.command),
+              cond: 'commandHasParameters',
               actions: 'setCommand',
             },
             {
               target: 'fully_loaded',
+              actions: 'setCommand',
             },
           ],
         },
@@ -52,8 +78,7 @@ const fieldMachine = Machine(
           '': [
             {
               target: 'fully_loaded',
-              cond: (ctx, event) =>
-                commandFullyLoaded(ctx.command, ctx.parameters),
+              cond: 'commandFullyLoaded',
             },
             { target: 'parameters' },
           ],
@@ -70,6 +95,7 @@ const fieldMachine = Machine(
       setCommand,
       submitCommand,
     },
+    guards: { commandFullyLoaded, commandHasParameters, commandNotNull },
   },
 );
 
