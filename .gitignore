@@ -1,5 +1,6 @@
 node_modules
 lib
+.DS_Store
 
 # these cause more harm than good
 # when working with contributors

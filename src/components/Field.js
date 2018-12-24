@@ -204,7 +204,6 @@ function Field({
         command={command}
         getItems={getItems}
         commitParameter={parameter =>
-          console.log('sending commit') ||
           send({ type: 'PARAMETER_COMMIT', parameter })
         }
       />
