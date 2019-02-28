@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import * as React from 'react';
 import { interpret } from 'xstate/lib/interpreter';
 
@@ -8,7 +9,7 @@ function useMachine(machine, options = {}) {
       interpret(machine)
         .onTransition(state => {
           options.log && console.log('CONTEXT:', state.context);
-          options.log && console.log(`STATE`, state.value);
+          options.log && console.log('STATE', state.value);
           setCurrent(state);
         })
         .onEvent(e => options.log && console.log('EVENT:', e))
@@ -16,9 +17,7 @@ function useMachine(machine, options = {}) {
     [],
   );
 
-  React.useEffect(() => {
-    return () => service.stop();
-  }, []);
+  React.useEffect(() => () => service.stop(), []);
 
   return [current, service.send];
 }
