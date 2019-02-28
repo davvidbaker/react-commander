@@ -13,6 +13,7 @@ function onSubmit(command) {
 storiesOf('Commander', module)
   .add('default', () => (
     <Commander
+      appElement={document.body}
       isOpen={true}
       commands={commands}
       onSubmit={onSubmit}
@@ -24,6 +25,7 @@ storiesOf('Commander', module)
   ))
   .add('command selected', () => (
     <Commander
+      appElement={document.body}
       isOpen={true}
       commands={commands}
       onSubmit={onSubmit}
@@ -36,6 +38,7 @@ storiesOf('Commander', module)
   ))
   .add('command selected and a parameter already filled out', () => (
     <Commander
+      appElement={document.body}
       isOpen={true}
       commands={commands}
       onSubmit={onSubmit}
@@ -49,6 +52,7 @@ storiesOf('Commander', module)
   // awesome this just worked without me doing anything haha yus 🤙
   .add('command selected and a not-first parameter already filled out', () => (
     <Commander
+      appElement={document.body}
       isOpen={true}
       commands={commands}
       onSubmit={onSubmit}
@@ -62,6 +66,7 @@ storiesOf('Commander', module)
   // this shold just go straight to the fully loaded state
   .add('command selected and all parameters already filled out', () => (
     <Commander
+      appElement={document.body}
       isOpen={true}
       commands={commands}
       onSubmit={onSubmit}
