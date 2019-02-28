@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Commander from '../';
@@ -79,4 +79,28 @@ storiesOf('Commander', module)
         parameters: { name: 'asdf', thread_id: 0, category_id: 1 },
       }}
     />
-  ));
+  ))
+  .add('button to open, partially filled out', () => <MyComponent />);
+
+const MyComponent = () => {
+  const [isOpen, toggleOpen] = React.useState(false);
+  return (
+    <div>
+      <button onClick={() => toggleOpen(!isOpen)}>click to open</button>
+      <Commander
+        appElement={document.body}
+        isOpen={isOpen}
+        commands={commands}
+        onSubmit={onSubmit}
+        hideCommander={() => {
+          console.log('hiding');
+        }}
+        field={{
+          command: commands[0],
+          parameters: { name: 'asdf', thread_id: 0 },
+        }}
+        getItems={getItems}
+      />
+    </div>
+  );
+};

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
 // 🔮 might not want to rely on a modal
 import Modal from 'react-modal';
 
@@ -9,8 +8,6 @@ import Field from './Field';
 function Commander({
   commands,
   onSubmit,
-  onCatch,
-  placeholder,
   hideCommander,
   appElement,
   isOpen,

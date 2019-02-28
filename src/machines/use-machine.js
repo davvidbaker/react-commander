@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-expressions */
-import * as React from 'react';
+/* eslint-disable no-unused-expressions, no-console */
+import { useState, useMemo, useEffect } from 'react';
 import { interpret } from 'xstate/lib/interpreter';
 
 function useMachine(machine, options = {}) {
-  const [current, setCurrent] = React.useState(machine.initialState);
-  const service = React.useMemo(
+  const [current, setCurrent] = useState(machine.initialState);
+  const service = useMemo(
     () =>
       interpret(machine)
         .onTransition(state => {
@@ -17,7 +17,7 @@ function useMachine(machine, options = {}) {
     [],
   );
 
-  React.useEffect(() => () => service.stop(), []);
+  useEffect(() => () => service.stop(), []);
 
   return [current, service.send];
 }

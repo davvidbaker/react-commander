@@ -6,10 +6,6 @@ import FuzzyAutocomplete from './FuzzyAutocomplete';
 import SimplePrompt from './SimplePrompt';
 import * as Utilities from '../utilities';
 
-const SelectedCommand = ({ command }) => {
-  return command ? <span>{command.copy}</span> : null;
-};
-
 const CommandSelect = ({ command, availableCommands, onChange, editing }) => {
   return editing ? (
     <FuzzyAutocomplete
@@ -177,7 +173,7 @@ function Field({
     fieldMachine.withConfig(
       {
         actions: {
-          submitCommand: (ctx, event) =>
+          submitCommand: (ctx, _event) =>
             onFullyLoaded({ action: ctx.command.action, ...ctx.parameters }),
         },
       },
@@ -189,7 +185,8 @@ function Field({
     },
   );
 
-  const { command, parameters, currentOptions } = state.context;
+  // eslint-disable-next-line no-unused-vars
+  const { command, parameters, _currentOptions } = state.context;
 
   return (
     <div>
