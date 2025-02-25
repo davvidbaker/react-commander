@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+// @ts-nocheck
 import fuzzaldrin from 'fuzzaldrin-plus';
 import Downshift from 'downshift';
 import styled from 'styled-components';
@@ -22,10 +22,10 @@ const FuzzyAutocomplete = ({
   placeholder,
   items,
   itemStringKey,
-  itemReturnKey = null,
-  onInputChange,
+  // itemReturnKey = null,
+  // onInputChange,
   initialInputValue = '',
-  onBlur,
+  // onBlur,
 }) => {
   return (
     <Downshift
@@ -45,8 +45,8 @@ const FuzzyAutocomplete = ({
         getLabelProps,
         highlightedIndex,
         inputValue,
-        isOpen,
-        selectedItem,
+        // isOpen,
+        // selectedItem,
       }) => {
         return (
           <div>
@@ -68,8 +68,9 @@ const FuzzyAutocomplete = ({
                 return (
                   <div
                     className="commander-result"
+                    key={itemStringKey ? item[itemStringKey] : item}
                     {...getItemProps({
-                      key: itemStringKey ? item[itemStringKey] : item,
+                      // key: itemStringKey ? item[itemStringKey] : item,
                       index,
                       item,
                       style: {

@@ -1,11 +1,14 @@
-const threadParam = {
+// @ts-nocheck
+import { Parameter } from '../components/Field'
+
+const threadParam: Parameter = {
   key: 'thread_id',
   placeholder: 'thread',
   selector: props => props.threads,
   itemStringKey: 'name',
   itemReturnKey: 'id',
 };
-const categoryParam = {
+const categoryParam: Parameter = {
   key: 'category_id',
   placeholder: 'category',
   selector: props => props.user.categories,

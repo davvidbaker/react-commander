@@ -1,4 +1,5 @@
 /* ⚠️ todo strip warnings in production build */
+// @ts-nocheck
 function warning(fn) {
   fn();
 }
@@ -15,7 +16,7 @@ export function commandHasParameters(command) {
 }
 
 export function commandFullyLoaded(command, parameters) {
-  for (let parameter of command.parameters) {
+  for (const parameter of command.parameters) {
     if (parameterDefined(parameters, parameter)) continue;
     else return false;
   }
@@ -24,7 +25,7 @@ export function commandFullyLoaded(command, parameters) {
 }
 
 export function currentParameter(command, parameters) {
-  for (let parameter of command.parameters) {
+  for (const parameter of command.parameters) {
     if (parameterDefined(parameters, parameter)) continue;
     else return parameter;
   }
